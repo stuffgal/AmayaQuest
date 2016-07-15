@@ -33,9 +33,15 @@ class AQMain:
                     if fullscreen == True:
                         pygame.display.set_mode((self.width,self.height))
                         fullscreen = False
+                        bg = pygame.image.load("kf.png")
+                        self.screen.blit(bg, (0,0))
+                        pygame.display.flip()
                     else:
                         pygame.display.set_mode((self.width,self.height), pygame.FULLSCREEN)
                         fullscreen = True
+                        bg = pygame.image.load("kf.png")
+                        self.screen.blit(bg, (0,0))
+                        pygame.display.flip()
                 
 
 if __name__ == "__main__":
