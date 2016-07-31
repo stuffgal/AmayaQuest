@@ -8,6 +8,7 @@ if not pygame.mixer: print "Warning: sounds disabled."
 
 from KillingForest import killing_forest
 from MainMenu import MenuObject
+from TextBox import TextBoxObject
 
 resolution = (1920, 1080)
 screen = pygame.display.set_mode(resolution) 
@@ -15,10 +16,11 @@ screen = pygame.display.set_mode(resolution)
 bg = pygame.image.load("start.png")
 
 font = pygame.font.Font(None, 36)
-words = font.render("Welcome to Amaya Quest! :) Press K to go to the Killing Forest", 1, (255, 255, 255))
+words = font.render("Welcome to Amaya Quest! :) Press K to go to the Killing Forest", 1, (255, 255, 255), (0, 0, 0))
 wordspos = (20, 20)
 
 menuBox = MenuObject()
+textBox = TextBoxObject("tweet")
 
 active = "mainMenu"
 
@@ -27,6 +29,7 @@ menus = {"mainMenu" : menuBox, "kitty" : "kitty"}
 screen.blit(bg, (0,0))
 screen.blit(words, wordspos)
 menuBox.draw(screen)
+textBox.draw(screen)
 pygame.display.flip()
 
 while 1:
@@ -47,4 +50,5 @@ while 1:
     screen.blit(bg, (0,0))
     screen.blit(words, wordspos)
     menuBox.draw(screen)
+    textBox.draw(screen)
     pygame.display.flip()
