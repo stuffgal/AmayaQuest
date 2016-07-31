@@ -7,16 +7,27 @@ if not pygame.font: print "Warning: fonts disabled."
 if not pygame.mixer: print "Warning: sounds disabled."
 
 from KillingForest import killing_forest
+from MainMenu import MenuObject
 
 resolution = (1920, 1080)
-screen = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
-fullscreen = True
+screen = pygame.display.set_mode(resolution) 
 
 bg = pygame.image.load("start.png")
 
 font = pygame.font.Font(None, 36)
 words = font.render("Welcome to Amaya Quest! :) Press K to go to the Killing Forest", 1, (255, 255, 255))
 wordspos = (20, 20)
+
+menuBox = MenuObject()
+
+active = "mainMenu"
+
+menus = {"mainMenu" : menuBox, "kitty" : "kitty"}
+
+screen.blit(bg, (0,0))
+screen.blit(words, wordspos)
+menuBox.draw(screen)
+pygame.display.flip()
 
 while 1:
     for event in pygame.event.get(): 
@@ -25,13 +36,7 @@ while 1:
             
     key = pygame.key.get_pressed()
     
-    if key[K_f] == True:
-        if fullscreen == True:
-            pygame.display.set_mode(resolution)
-            fullscreen = False
-        else:
-            pygame.display.set_mode(resolution, pygame.FULLSCREEN)
-            fullscreen = True
+    active = menus[active].handleMenu()
     
     if key[K_ESCAPE] == True:
         sys.exit()
@@ -41,4 +46,5 @@ while 1:
     
     screen.blit(bg, (0,0))
     screen.blit(words, wordspos)
+    menuBox.draw(screen)
     pygame.display.flip()
